@@ -1,10 +1,15 @@
 package example;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class GuessGame {
+
+    private InputGuess inputGuessNum;
+
     public String validation(int[] answer, int[] inputGuess) {
+        inputGuessNum = new InputGuess();
+        if (!inputGuessNum.isLegal(inputGuess)){
+            return "Wrong Input, Input again";
+        }
         int sumOfA = 0;
         int sumOfB = 0;
         for (int i = 0; i < answer.length; i++){
