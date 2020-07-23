@@ -16,4 +16,16 @@ public class GuessGameTest {
         //then
         assertEquals("4A0B",actual);
     }
+
+    @Test
+    void should_be_return_wrong_input_when_given_answer_1234_and_input_guess_is_illegal() {
+        //given
+        int [] answer = {1,2,3,4};
+        int[] inputGuess = {1000,2,3,4};
+        GuessGame guessGame = new GuessGame();
+        //when
+        String actual = guessGame.validation(answer,inputGuess);
+        //then
+        assertEquals("Wrong Input，Input again",actual);
+    }
 }
