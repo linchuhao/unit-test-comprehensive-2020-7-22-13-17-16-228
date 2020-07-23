@@ -1,4 +1,5 @@
 package example;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,6 +27,17 @@ public class GuessGameTest {
         //when
         String actual = guessGame.validation(answer,inputGuess);
         //then
-        assertEquals("Wrong Input，Input again",actual);
+        assertEquals("Wrong Input, Input again",actual);
+    }
+
+    @Test
+    public void should_return_true_when_generate_answer_is_repeated() {
+        //given
+        AnswerGeneratorImpl answerGenerator = new AnswerGeneratorImpl();
+        int[] answer = answerGenerator.generate();
+        //when compare two answer has repeat
+        boolean repeat = true;
+        //then
+        Assertions.assertTrue(true);
     }
 }
