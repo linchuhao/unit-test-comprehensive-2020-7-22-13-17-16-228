@@ -37,7 +37,15 @@ public class GuessGameTest {
         int[] answer = answerGenerator.generate();
         //when compare two answer has repeat
         boolean repeat = true;
+        for (int i = 0; i < answer.length; i++) {
+            for (int j = i + 1; j < answer.length; j++) {
+                if (answer[j] == answer[i]) {
+                    repeat = false;
+                    break;
+                }
+            }
+        }
         //then
-        Assertions.assertTrue(true);
+        Assertions.assertTrue(repeat);
     }
 }
