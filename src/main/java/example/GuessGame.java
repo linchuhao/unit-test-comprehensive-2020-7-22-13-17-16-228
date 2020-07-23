@@ -3,10 +3,14 @@ package example;
 
 public class GuessGame {
 
-    private InputGuess inputGuessNum;
+    private int[] answer;
+
+    public GuessGame(AnswerGenerator answerGenerator) {
+        this.answer = answerGenerator.generate();
+    }
 
     public String validation(int[] answer, int[] inputGuess) {
-        inputGuessNum = new InputGuess();
+        InputGuess inputGuessNum = new InputGuess();
         if (!inputGuessNum.isLegal(inputGuess)){
             return "Wrong Input, Input again";
         }
