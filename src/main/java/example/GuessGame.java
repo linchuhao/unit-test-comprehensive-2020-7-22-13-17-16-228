@@ -9,6 +9,9 @@ public class GuessGame {
         this.answer = answerGenerator.generate();
     }
 
+    public GuessGame() {
+    }
+
     public String validation(int[] answer, int[] inputGuess) {
         InputGuess inputGuessNum = new InputGuess();
         if (!inputGuessNum.isLegal(inputGuess)){
