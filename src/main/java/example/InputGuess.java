@@ -8,17 +8,17 @@ public class InputGuess {
 
     }
     public boolean isLegal(int[] inputGuess) {
-        boolean lengthLegal = hasLegalLength(inputGuess);
-        boolean legalRange = hasLegalRange(inputGuess);
-        boolean hasRepeatNumbers = hasRepeat(inputGuess);
-        return !hasRepeatNumbers && lengthLegal && legalRange;
+        boolean isLegalLength = isLegalLength(inputGuess);
+        boolean isLegalRange = isLegalRange(inputGuess);
+        boolean isRepeatNumbers = isRepeat(inputGuess);
+        return !isRepeatNumbers && isLegalLength && isLegalRange;
     }
 
-    private boolean hasLegalLength(int[] inputGuess){
+    private boolean isLegalLength(int[] inputGuess){
         return 4 == inputGuess.length;
     }
 
-    private boolean hasLegalRange(int[] inputGuess){
+    private boolean isLegalRange(int[] inputGuess){
         for (int num: inputGuess){
             if (num < 0 || num > 9){
                 return false;
@@ -27,7 +27,7 @@ public class InputGuess {
         return true;
     }
 
-    private boolean hasRepeat(int[] inputGuess){
+    private boolean isRepeat(int[] inputGuess){
         Set<Integer> tempSet = new HashSet<Integer>();
         for (int num: inputGuess) {
             tempSet.add(num);
