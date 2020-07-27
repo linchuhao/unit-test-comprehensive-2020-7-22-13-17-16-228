@@ -2,6 +2,9 @@ package example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GuessGameTest {
@@ -47,17 +50,14 @@ public class GuessGameTest {
         //given
         AnswerGenerator answerGenerator = new AnswerGenerator();
         int[] answer = answerGenerator.generate();
-        //when compare two answer has repeat
-        boolean isNotRepeat = true;
-        for (int i = 0; i < answer.length; i++) {
-            for (int j = i + 1; j < answer.length; j++) {
-                if (answer[j] == answer[i]) {
-                    isNotRepeat = false;
-                    break;
-                }
-            }
+        //when
+        Set<Integer> tempSet = new HashSet<Integer>();
+        for (int num: answer) {
+            tempSet.add(num);
         }
         //then
+        boolean isNotRepeat = answer.length == tempSet.size();
         Assertions.assertTrue(isNotRepeat);
     }
+
 }
