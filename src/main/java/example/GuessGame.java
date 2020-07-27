@@ -3,13 +3,19 @@ package example;
 
 public class GuessGame {
 
-    private final InputGuess inputGuessNum = new InputGuess();
+    private final InputValidation inputValidationNum = new InputValidation();
+
+    private int[] answer;
 
     public GuessGame() {
     }
 
+    public GuessGame(AnswerGenerator answerGenerator) {
+        answer = answerGenerator.generate();
+    }
+
     public String calculateResult(int[] answer, int[] inputGuess) {
-        if (!inputGuessNum.isLegal(inputGuess)){
+        if (!inputValidationNum.isLegal(inputGuess)){
             return "Wrong Input, Input again";
         }
         int sumOfA = 0;

@@ -1,11 +1,13 @@
 package example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class GuessGameTest {
 
@@ -58,6 +60,48 @@ public class GuessGameTest {
         //then
         boolean isNotRepeat = answer.length == tempSet.size();
         Assertions.assertTrue(isNotRepeat);
+    }
+
+    @Test
+    public void should_be_return_win_when_input_guess_two_times_given_input_guess_and_answer1234() {
+        //given
+        int [] answer = {1,2,3,4};
+        int [] inputGuess1 = {1,2,3,5};
+        int [] inputGuess2 = {1,2,3,4};
+        AnswerGenerator answerGenerator = Mockito.mock(AnswerGenerator.class);
+        when(answerGenerator.generate()).thenReturn(answer);
+        GuessProcess guessProcess = new GuessProcess(answerGenerator);
+        //when
+        guessProcess.guess(inputGuess1);
+        String actual = guessProcess.guess(inputGuess2);
+        //then
+        Assertions.assertEquals("win, all correct.", actual);
+    }
+
+    @Test
+    public void should_be_return_end_when_input_guess_six_times_given_input_guess_and_answer1234() {
+        //given
+        int [] answer = {1,2,3,4};
+        int [] inputGuess1 = {1,2,3,5};
+        int [] inputGuess2 = {1,2,3,6};
+        int [] inputGuess3 = {1,2,3,7};
+        int [] inputGuess4 = {1,2,3,8};
+        int [] inputGuess5 = {1,2,3,9};
+        int [] inputGuess6 = {1,2,3,10};
+        AnswerGenerator answerGenerator = Mockito.mock(AnswerGenerator.class);
+        when(answerGenerator.generate()).thenReturn(answer);
+        GuessProcess guessProcess = new GuessProcess(answerGenerator);
+        //when
+        guessProcess.guess(inputGuess1);
+        guessProcess.guess(inputGuess2);
+        guessProcess.guess(inputGuess3);
+        guessProcess.guess(inputGuess4);
+        guessProcess.guess(inputGuess5);
+        guessProcess.guess(inputGuess6);
+        //then
+        Assertions.assertEquals(6, guessProcess.getSum());
+        String actual = guessProcess.guess(inputGuess6);
+        Assertions.assertEquals("end", actual);
     }
 
 }
