@@ -13,7 +13,7 @@ public class GuessGameTest {
         int[] inputGuess = {1,2,3,4};
         GuessGame guessGame = new GuessGame();
         //when
-        String actual = guessGame.validation(answer,inputGuess);
+        String actual = guessGame.calculateResult(answer,inputGuess);
         //then
         assertEquals("4A0B",actual);
     }
@@ -25,7 +25,7 @@ public class GuessGameTest {
         int[] inputGuess = {4,3,2,1};
         GuessGame guessGame = new GuessGame();
         //when
-        String actual = guessGame.validation(answer,inputGuess);
+        String actual = guessGame.calculateResult(answer,inputGuess);
         //then
         assertEquals("0A4B",actual);
     }
@@ -37,7 +37,7 @@ public class GuessGameTest {
         int[] inputGuess = {1000,2,3,4};
         GuessGame guessGame = new GuessGame();
         //when
-        String actual = guessGame.validation(answer,inputGuess);
+        String actual = guessGame.calculateResult(answer,inputGuess);
         //then
         assertEquals("Wrong Input, Input again",actual);
     }
@@ -45,7 +45,7 @@ public class GuessGameTest {
     @Test
     public void should_return_true_when_generate_answer_is_not_repeated() {
         //given
-        AnswerGeneratorImpl answerGenerator = new AnswerGeneratorImpl();
+        AnswerGenerator answerGenerator = new AnswerGenerator();
         int[] answer = answerGenerator.generate();
         //when compare two answer has repeat
         boolean isNotRepeat = true;

@@ -3,17 +3,12 @@ package example;
 
 public class GuessGame {
 
-    private int[] answer;
-
-    public GuessGame(AnswerGenerator answerGenerator) {
-        this.answer = answerGenerator.generate();
-    }
+    private final InputGuess inputGuessNum = new InputGuess();
 
     public GuessGame() {
     }
 
-    public String validation(int[] answer, int[] inputGuess) {
-        InputGuess inputGuessNum = new InputGuess();
+    public String calculateResult(int[] answer, int[] inputGuess) {
         if (!inputGuessNum.isLegal(inputGuess)){
             return "Wrong Input, Input again";
         }

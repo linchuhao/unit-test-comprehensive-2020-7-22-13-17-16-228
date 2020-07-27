@@ -10,13 +10,6 @@ public class GuessProcess {
 
     private int[] answer;
 
-    public GuessProcess() {
-        AnswerGenerator answerGenerator = new AnswerGeneratorImpl();
-        this.answer = answerGenerator.generate();
-        this.guessGame = new GuessGame(answerGenerator);
-        this.sum = 0;
-    }
-
     public GuessProcess(AnswerGenerator answerGenerator) {
         this.answer = answerGenerator.generate();
         this.guessGame = new GuessGame(answerGenerator);
@@ -34,7 +27,7 @@ public class GuessProcess {
             result.append("Wrong Input, Input again\n");
             return result.toString();
         } else {
-            String guessResult = guessGame.validation(answer,inputNumber);
+            String guessResult = guessGame.calculateResult(answer,inputNumber);
             result.append(guessResult).append("\n");
             if (guessResult.equals("4A0B")) {
                 this.sum = 6;
